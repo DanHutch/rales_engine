@@ -2,11 +2,21 @@ require 'csv'
 
 namespace :import do 
 	desc "import merchants from csv file"
-	task merchants: :environment do
-		filename = File.join Rails.root, "/lib/csv/merchants.csv"
-    CSV.foreach(filename, headers: true) do |row|
-			Merchant.create(row.to_h)
+	task data: :environment do
+		types = {
+						# "customers" 		=> Customer,
+						# "invoice_items" => InvoiceItem,
+						# "invoices" 			=> Invoice,
+						# "items" 				=> Item,
+						"merchants"			=> Merchant,
+						# "transactions"	=> Transaction
+		}
+
+		types.each do |name, type|
+			filename = File.join Rails.root, "/lib/csv/#{name}.csv"
+			CSV.foreach(filename, headers: true) do |row|
+				type.create(row.to_h)
+			end
 		end
-		puts "You now have #{Merchant.count} merchants!"
   end
 end
