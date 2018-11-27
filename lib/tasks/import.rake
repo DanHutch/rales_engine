@@ -7,5 +7,6 @@ namespace :import do
     CSV.foreach(filename, headers: true) do |row|
 			Merchant.create(row.to_h)
 		end
+		puts "You now have #{Merchant.count} merchants!"
   end
 end
