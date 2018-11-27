@@ -1,23 +1,26 @@
 require 'csv'
 
 namespace :import do 
-	desc "import merchants from csv file"
-
-	types = {
-					# "customers" 		=> Customer,
-					# "invoice_items" => InvoiceItem,
-					# "invoices" 			=> Invoice,
-					# "items" 				=> Item,
-					"merchants"			=> Merchant,
-					# "transactions"	=> Transaction
-	}
-
+	desc "import data from csv files"
+	
 	task data: :environment do
-		types.each do |name, type|
-			filename = File.join Rails.root, "/lib/csv/#{name}.csv"
+		types = [
+			# "invoice_items" => InvoiceItem,
+			{class: Customer, name: "customers"},
+			{class: Merchant, name: "merchants"},
+			{class: Item, name: "items"},
+			{class: Invoice, name: "invoices"},
+			{class: Transaction, name: "transactions"}
+		]
+
+		types.each do |type|
+			count = 0
+			filename = File.join Rails.root, "/lib/csv/#{type[:name]}.csv"
 			CSV.foreach(filename, headers: true) do |row|
-				type.create(row.to_h)
+				entry = type[:class].create!(row.to_h)
+			count +=1 if entry.persisted?
 			end
+			puts "Imported #{count} new entries to database!"
 		end
 	end
 	
