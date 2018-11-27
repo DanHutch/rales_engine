@@ -39,6 +39,13 @@ end
 DatabaseCleaner.strategy = :truncation
 
 RSpec.configure do |config|
+
+  config.before(:all) do
+    DatabaseCleaner.clean 
+  end
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.include FactoryBot::Syntax::Methods
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
