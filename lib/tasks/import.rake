@@ -5,12 +5,12 @@ namespace :import do
 	
 	task data: :environment do
 		types = [
-			# "invoice_items" => InvoiceItem,
 			{class: Customer, name: "customers"},
 			{class: Merchant, name: "merchants"},
 			{class: Item, name: "items"},
 			{class: Invoice, name: "invoices"},
-			{class: Transaction, name: "transactions"}
+			{class: Transaction, name: "transactions"},
+			{class: InvoiceItem, name: "invoice_items"}
 		]
 
 		types.each do |type|
