@@ -24,4 +24,9 @@ RSpec.describe Item, type: :model do
 		expect(Item.most_sold(1)).to eq([item_4])
 
 	end
+
+	# it "can return the best date by revenue" do
+	# 	create(:invoice)
+	# end
+
 end
