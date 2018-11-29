@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Customer, type: :model do
  	it {should have_many(:invoices)}
 
-	xit "should be able to return a customer's favorite merchant" do
+	it "should be able to return a customer's favorite merchant" do
 		custy = create(:customer)
 		other_cust = create(:customer)
 		id = custy.id
@@ -28,7 +28,7 @@ RSpec.describe Customer, type: :model do
 		tran_8 = create(:transaction, invoice_id: inv_8.id, result: "failure")
 		tran_8 = create(:transaction, invoice_id: inv_9.id, result: "success")
 
-		expect(custy.fav_merchant).to eq(merch_1)
+		expect(Customer.fav_merchant(id)).to eq(merch_1)
 
 	end
 end
