@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe Customer, type: :model do
- 	it {should have_many(:invoices)}
+describe "Favorite Merchant API" do 
 
-	xit "should be able to return a customer's favorite merchant" do
-		custy = create(:customer)
+	xit "can get a customer's favorite merchant" do
+			custy = create(:customer)
 		other_cust = create(:customer)
 		id = custy.id
 		expect(id).to eq(1)
@@ -28,8 +27,13 @@ RSpec.describe Customer, type: :model do
 		tran_8 = create(:transaction, invoice_id: inv_8.id, result: "failure")
 		tran_8 = create(:transaction, invoice_id: inv_9.id, result: "success")
 
-		expect(custy.fav_merchant).to eq(merch_1)
+		binding.pry
+		get "/api/v1/customers/#{id}/favorite_merchant"
+
+		fav_merch = JSON.parse(response.body)
+
+		expect(response).to be_successful
+		expect(fav_merch["id"]).to eq(id)
 
 	end
 end
-
