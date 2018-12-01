@@ -10,5 +10,9 @@ class Merchant < ApplicationRecord
 	def self.most_revenue(num)
 		Merchant.unscoped.select('merchants.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS revenue').joins(invoices: [:invoice_items, :transactions]).merge(Transaction.unscoped.successful).group(:id).order('revenue DESC').limit(num)
 	end
+
+	def self.top_sellers(num)
+		Merchant.unscoped.select('merchants.*, SUM(invoice_items.quantity) AS items_sold').joins(invoices: [:invoice_items, :transactions]).merge(Transaction.unscoped.successful).group(:id).order('items_sold DESC').limit(num)
+	end
 	
 end
