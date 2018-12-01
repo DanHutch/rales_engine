@@ -19,7 +19,7 @@ RSpec.describe Merchant, type: :model do
 		@ii_1 = create(:invoice_item, item_id: @item_1.id, invoice_id: @invoice_1.id, quantity: 10, unit_price: 1000000 )
 		@ii_2 = create(:invoice_item, item_id: @item_2.id, invoice_id: @invoice_2.id, quantity: 20, unit_price: 2000000 )
 		@ii_3 = create(:invoice_item, item_id: @item_3.id, invoice_id: @invoice_3.id, quantity: 10, unit_price: 3000000 )
-		@ii_4 = create(:invoice_item, item_id: @item_3.id, invoice_id: @invoice_4.id, quantity: 10, unit_price: 4000000 )
+		@ii_4 = create(:invoice_item, item_id: @item_1.id, invoice_id: @invoice_4.id, quantity: 10, unit_price: 4000000 )
 		@tran_1 = create(:transaction, invoice_id: @invoice_1.id, result: "success")
 		@tran_2 = create(:transaction, invoice_id: @invoice_2.id, result: "success")
 		@tran_3 = create(:transaction, invoice_id: @invoice_3.id, result: "success")
@@ -35,8 +35,17 @@ RSpec.describe Merchant, type: :model do
 	end
 
 	it "can return top merchants by items sold" do
-		# binding.pry
 		expect(Merchant.top_sellers(2)).to eq([@merch_1, @merch_2])
+	end
+
+	it "can return total revenue for a merchant" do
+		expect(Merchant.revenue(@merch_3.id)).to eq(30000000)
+		expect(Merchant.revenue(@merch_1.id)).to eq(50000000)
+	end
+
+	it "can return total revenue for a merchant on a specific date" do
+		expect(Merchant.single_revenue_by_date(@merch_1.id, "2018-04-20")).to eq(10000000)
+		expect(Merchant.single_revenue_by_date(@merch_1.id, "2018-04-21")).to eq(40000000)
 	end
 
 end
