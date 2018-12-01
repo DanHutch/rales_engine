@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resources :customers, only: [:index, :show]
 
       # get 'items/:id/best_day', to: 'best_day#show'
+      get 'items/most_revenue', to: 'top_revenue_items#index'
       get 'items/most_items', to: 'most_sold#index' 
       resources :items, only: [:index, :show]
 
