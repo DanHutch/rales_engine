@@ -55,4 +55,8 @@ RSpec.describe Merchant, type: :model do
 		expect(Merchant.fav_customer(@merch_1.id)).to eq(@custy_2)
 	end
 
+	# it "can find all customers with pending invoices" do
+
+	# end
+	
 end

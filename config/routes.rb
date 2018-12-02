@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       get 'merchants/revenue', to: "revenue_by_date#show"
       get 'merchants/:id/favorite_customer', to: "favorite_customer#show"
       get 'merchants/:id/revenue', to: "merchant_revenue#show"
+      get 'merchants/:id/items', to:
+       "merchant_items#index"
+       get 'merchants/:id/invoices', to: "merchant_invoices#index"
       resources :merchants, only: [:index, :show]
 
       get 'customers/:id/favorite_merchant', to: "favorite_merchant#show"
@@ -17,6 +20,11 @@ Rails.application.routes.draw do
       get 'items/most_revenue', to: 'top_revenue_items#index'
       get 'items/most_items', to: 'most_sold#index' 
       resources :items, only: [:index, :show]
+
+      get 'invoices/:id/transactions', to: "invoice_transactions#index"
+      get 'invoices/:id/invoice_items', to: "invoice_invoice_items#index"
+      get 'invoices/:id/items', to: "items_by_invoice#index"
+
 
       resources :invoices, only: [:index, :show]
       resources :transactions, only: [:index, :show]
