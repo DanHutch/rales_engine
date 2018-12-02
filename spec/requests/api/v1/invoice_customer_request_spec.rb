@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe "Customers by Invoice API" do 
-	it "returns all customers for an invoice" do
+describe "Customer by Invoice API" do 
+	it "returns customer for an invoice" do
 		custy = create(:customer, id: 1)
 		inv = create(:invoice, id: 1, customer_id: custy.id)
 
