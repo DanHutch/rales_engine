@@ -23,5 +23,8 @@ class Merchant < ApplicationRecord
 		Invoice.unscoped.joins(:invoice_items, :transactions).where('invoices.merchant_id = ?', id).merge(Transaction.unscoped.successful).where("cast(invoices.created_at AS text) Like ?", "#{date}%").sum("invoice_items.quantity*invoice_items.unit_price")
 	end
 
+	def self.fav_customer(id)
+		Customer.unscoped.select('customers.*, COUNT(transactions) AS sales').joins(invoices: [:transactions]).where('invoices.merchant_id = ?', id).merge(Transaction.unscoped.successful).group(:id).order('sales DESC').limit(1).first
+	end
 	
 end
