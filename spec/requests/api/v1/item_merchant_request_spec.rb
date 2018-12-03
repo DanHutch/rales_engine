@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe "Invoice Item by Item API" do 
-	it "returns the invoice items for an item" do
+describe "Item Merchant by Item API" do 
+	it "returns the merchant for an item" do
 		merch = create(:merchant, id:1)
 		item = create(:item, id: 1, merchant_id: merch.id)
 
