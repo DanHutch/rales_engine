@@ -5,7 +5,7 @@ Rales Engine is a Ruby on Rails API that imports data from multiple CSV files an
 
 This project was built using Rails v5.1.6,  Ruby v2.4.1, and Postgresql 10.5 and comes with all the necessary gems in the Gemfile. After forking and cloning the repo, simply run "Bundle" from the command line. 
 
-###Setup:
+### Setup:
 
 First, clone this repo:
 
@@ -18,7 +18,7 @@ Once this is done, to import the data from CSV files in the 'lib' directory, run
 
 If done properly, you should now be able to run the local test suite using the command `rspec`. 
 
-###Gems:
+### Gems:
 
 - rails
 - pg
@@ -37,11 +37,11 @@ If done properly, you should now be able to run the local test suite using the c
 - spring-watcher-listen
 - tzinfo-data
 
-###Schema:
+### Schema:
 
 ![Schema Diagram](./schema_diagram.png)
 
-###API Endpoints:
+### API Endpoints:
 
 There are 6 resources in this project's database, which are:
 
@@ -112,7 +112,7 @@ Finally, there are the Business Intelligence endpoints...
 - GET `api/v1/GET /api/v1/customers/:id/favorite_merchant`
 (returns a merchant where the customer has conducted the most successful transactions)
 
-###Contributing:
+### Contributing:
 
 In order to contribute, please fork this repo, then clone your new repo and create a branch for your feature.
 
