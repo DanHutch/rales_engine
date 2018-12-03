@@ -10,7 +10,6 @@ describe "Item by Invoice Items API" do
 		expect(response).to be_successful
 
 		result = JSON.parse(response.body)
-		# binding.pry
 		expect(result["data"]["attributes"]["id"]).to eq(item.id)
 	end
 
