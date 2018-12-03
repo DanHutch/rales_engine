@@ -37,6 +37,10 @@ If done properly, you should now be able to run the local test suite using the c
 - spring-watcher-listen
 - tzinfo-data
 
+###Schema:
+
+![Schema Diagram](./schema_diagram.png)
+
 ###API Endpoints:
 
 There are 6 resources in this project's database, which are:
