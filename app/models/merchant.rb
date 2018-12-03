@@ -26,13 +26,5 @@ class Merchant < ApplicationRecord
 	def self.fav_customer(id)
 		Customer.unscoped.select('customers.*, COUNT(transactions) AS sales').joins(invoices: [:transactions]).where('invoices.merchant_id = ?', id).merge(Transaction.unscoped.successful).group(:id).order('sales DESC').limit(1).first
 	end
-
-	# def self.pending(id)
-	# 	Customer.find_by_sql(["SELECT customers.* FROM customers INNER JOIN invoices ON invoices.customer_id = customers.id INNER JOIN transactions ON transactions.invoice_id = invoices.id WHERE invoices.merchant_id = ? ORDER BY customers.id ASC EXCEPT SELECT customers.* FROM customers INNER JOIN invoices ON invoices.customer_id = customers.id INNER JOIN transactions ON transactions.invoice_id = invoices.id WHERE transactions.result = success WHERE invoices.merchant_id = ?", 17, 17])
-
-		# .select('customers.*').joins(invoices: [:transactions]).where('invoices.merchant_id = ?', id).
-		
-		# .where.not('transactions.result = ?', "success")
-	# end
 	
 end
