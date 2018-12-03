@@ -3,7 +3,7 @@
 
 Rales Engine is a Ruby on Rails API that imports data from multiple CSV files and provides Fast JsonAPI formatted endpoints for a number of different Business Intelligence queries and Resource index and show pages. It was built by Dan Hutchinson (github: DanHutch) as an initial solo project for Module 3 of the Back-End Engineering program at the Turing School.
 
-This project was built using Rails v5.1.6,  Ruby v2.4.1, and Postgresql 10.5 and comes with all the necessary gems in the Gemfile. After forking and cloning the repo, simply run `bundle install` from the command line. 
+This project was built using Rails v5.1.6,  Ruby v2.4.1, and Postgresql v10.5 and comes with all the necessary gems in the Gemfile. After forking and cloning the repo, simply run `bundle install` from the command line. 
 
 ### Setup:
 
